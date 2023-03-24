@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* body_bg */
+.body_bg {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.body_bg div{
+    width: 50%;
+    height: 50vh;
+}
+.body_bg .blue{
+    background: linear-gradient(135deg, #085DDD, white);
+}
+.body_bg .light_blue{
+    background: linear-gradient(-135deg, #14C1DE, white);
+}
+.body_bg .pink{
+    background: linear-gradient(45deg, #FEAFE2, white);
+}
+.body_bg .purple{
+    background: linear-gradient(-45deg, #7866D4, white);
+}
+.body_bg .center_white{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(100px);
+}
+/* body_bg */
+
+.container{
+    width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+}
+
+.fill {
+    position: relative;
+    height: 100%;
+    width: 90%;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+    background: white;
+}
+
+.empty {
+    display: inline-block;
+    min-height: 160px;
+    width: 100%;
+    margin: 10px;
+    border: 3px #EBECF0 solid;
+    background-color: #EBECF0;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.empty .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.empty .header:first-child {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.empty .header :last-child {
+    user-select: none;
+    cursor: pointer;
+    font-size: 36px;
+    transition: all .2s ease;
+}
+
+.empty .header :last-child:hover {
+    color: royalblue;
+}
+
+.empty .cont {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.empty .cont div {
+    width: 100%;
+    height: 50px;
+    background-color: blue;
+    border-radius: 8px;
+}
+
+.hold {
+    cursor: pointer;
+    border: solid #ccc 4px;
+}
+
+.hovered {
+    background: gray;
+    border-style: dashed;
+}
+
+.invisible {
+    display: none;
+}
