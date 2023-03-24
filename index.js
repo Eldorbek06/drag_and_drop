@@ -1,18 +1,4 @@
 const empties = document.querySelectorAll('.empty')
-const form = document.forms.addTask
-
-form.onsubmit = (event) => {
-    event.preventDefault()
-    let task = { id: Math.random() }
-    let fm = new FormData(form)
-
-    fm.forEach((value, key) => {
-        task[key] = value
-    })
-
-    todos.push(task)
-    reload(todos)
-}
 
 let todos = [
     {
