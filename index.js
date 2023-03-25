@@ -1,29 +1,52 @@
 let todos = [
-    {
-        id: '1sdffdfwe2543241',
-        title: 'buy milk',
-        description: 'description will be here'
-    },
-    {
-        id: '1sadasd2543241',
-        title: 'chek h w',
-        description: 'description will be here'
-    },
-    {
-        id: '1sdasdasd241',
-        title: 'todo h/t',
-        description: 'description will be here'
-    }
+    // {
+    //     id: '1sdffdfwe2543241',
+    //     title: 'buy milk',
+    //     description: 'description will be here'
+    // },
+    // {
+    //     id: '1sadasd2543241',
+    //     title: 'chek h w',
+    //     description: 'description will be here'
+    // },
+    // {
+    //     id: '1sdasdasd241',
+    //     title: 'todo h/t',
+    //     description: 'description will be here'
+    // }
 ]
 let temp = []
 let temp_id
+let cont_id
 let empties = document.querySelectorAll('.empty')
 let contents = document.querySelectorAll('.cont')
 let modal = document.querySelector('.modal')
 let closeBtns = document.querySelectorAll('.modal_close')
 let openBtns = document.querySelectorAll('.header span')
+let form = document.forms.main
+let inps = form.querySelectorAll('input')
 
-openBtns.forEach(el => el.onclick = () => modalToggle())
+form.onsubmit = (e) => {
+    e.preventDefault()
+    let obj = { id: Math.random() }
+    let fm = new FormData(form)
+    fm.forEach((value, key) => {
+        obj[key] = value
+    })
+    if (obj.title || obj.description !== '') {
+        todos.push(obj)
+        reload(todos)
+        modalToggle()
+        inps.forEach(el => el.value = '')
+    } else {
+        alert('Please fill at least one input!')
+    }
+}
+
+openBtns.forEach(el => el.onclick = () => {
+    cont_id = el.parentElement.nextElementSibling.id
+    modalToggle()
+})
 
 closeBtns.forEach(el => el.onclick = () => modalToggle())
 
@@ -71,9 +94,14 @@ function modalToggle() {
     modal.classList.contains('modal_act') ? modal.classList.remove('modal_act') : modal.classList.add('modal_act')
 }
 
-reload(todos)
 function reload(arr) {
-    contents[0].innerHTML = ''
+    let chosenCont = []
+    contents.forEach(el => {
+        if (el.id === cont_id) {
+            chosenCont.push(el)
+        }
+    })
+    console.log(chosenCont);
     temp = []
     for (let todo of arr) {
         let cont_item = document.createElement('div')
@@ -90,7 +118,7 @@ function reload(arr) {
         descr.innerHTML = todo.description
 
         cont_item.append(title, descr)
-        contents[0].append(cont_item)
+        chosenCont[0].append(cont_item)
 
         temp.push(cont_item)
 
