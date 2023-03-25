@@ -18,25 +18,56 @@
         <div class="light_blue"></div>
         <div class="pink"></div>
         <div class="purple"></div>
-        <div class="center_white"></div>
+        <div class="blur"></div>
     </div>
 
     <div class="container">
 
-        <div class="empty" data-cond="To do">
+        <div class="empty">
             <div class="header">
                 <p>To do</p>
                 <span class="material-symbols-outlined">
-                    more_horis
+                    more_horiz
                 </span>
             </div>
             <div class="cont">
-                <div></div>
+                <!-- <div class="item">
+                    <h3 class="title">Lorem ipsum dolor sit amet.</h3>
+                    <p class="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat, sed!</p>
+                </div> -->
             </div>
         </div>
-        <div class="empty" data-cond="Doing">
+        <div class="empty">
+            <div class="header">
+                <p>Doing</p>
+                <span class="material-symbols-outlined">
+                    more_horiz
+                </span>
+            </div>
+            <div class="cont"></div>
         </div>
-        <div class="empty" data-cond="Done">
+        <div class="empty">
+            <div class="header">
+                <p>Done</p>
+                <span class="material-symbols-outlined">
+                    more_horiz
+                </span>
+            </div>
+            <div class="cont"></div>
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="modal_close modal_area"></div>
+        <div class="modal_cont">
+            <div class="modal_close btn">X</div>
+            <div class="modal_content">
+                <form name="main">
+                    <input id="name" type="text" placeholder="title">
+                    <input id="age" type="text" placeholder="description">
+                    <button>Create</button>
+                </form>
+            </div>
         </div>
     </div>
 

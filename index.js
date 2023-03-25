@@ -1,5 +1,3 @@
-const empties = document.querySelectorAll('.empty')
-
 let todos = [
     {
         id: '1sdffdfwe2543241',
@@ -17,35 +15,17 @@ let todos = [
         description: 'description will be here'
     }
 ]
-
 let temp = []
+let temp_id
+let empties = document.querySelectorAll('.empty')
+let contents = document.querySelectorAll('.cont')
+let modal = document.querySelector('.modal')
+let closeBtns = document.querySelectorAll('.modal_close')
+let openBtns = document.querySelectorAll('.header span')
 
-function reload(arr) {
-    empties[0].innerHTML = ''
-    temp = []
-    for (let todo of arr) {
-        let div = document.createElement('div')
-        let b = document.createElement('b')
-        let p = document.createElement('p')
+openBtns.forEach(el => el.onclick = () => modalToggle())
 
-        div.setAttribute('id', todo.id)
-        div.setAttribute('class', 'fill')
-        div.setAttribute('draggable', true)
-
-        b.innerHTML = todo.title
-        p.innerHTML = todo.description
-
-        div.append(b, p)
-        empties[0].append(div)
-
-        temp.push(div)
-
-        div.addEventListener('dragstart', dragStart)
-        div.addEventListener('dragend', dragEnd)
-    }
-}
-reload(todos)
-
+closeBtns.forEach(el => el.onclick = () => modalToggle())
 
 for (empty of empties) {
     empty.addEventListener('dragover', dragOver)
@@ -54,8 +34,6 @@ for (empty of empties) {
     empty.addEventListener('drop', dragDrop)
 }
 
-let temp_id
-
 function dragStart() {
     temp_id = this.id
     this.className += ' hold'
@@ -63,7 +41,7 @@ function dragStart() {
 }
 
 function dragEnd() {
-    this.className = 'fill'
+    this.className = 'item'
 }
 
 function dragOver(event) {
@@ -84,7 +62,39 @@ function dragDrop(params) {
     this.className = 'empty'
     temp.forEach((item, index) => {
         if (item.id === temp_id) {
-            this.append(item)
+            this.lastElementChild.append(item)
         }
     })
+}
+
+function modalToggle() {
+    modal.classList.contains('modal_act') ? modal.classList.remove('modal_act') : modal.classList.add('modal_act')
+}
+
+reload(todos)
+function reload(arr) {
+    contents[0].innerHTML = ''
+    temp = []
+    for (let todo of arr) {
+        let cont_item = document.createElement('div')
+        let title = document.createElement('h3')
+        let descr = document.createElement('p')
+
+        cont_item.classList.add('item')
+        title.classList.add('title')
+        descr.classList.add('descr')
+
+        cont_item.id = todo.id
+        cont_item.draggable = true
+        title.innerHTML = todo.title
+        descr.innerHTML = todo.description
+
+        cont_item.append(title, descr)
+        contents[0].append(cont_item)
+
+        temp.push(cont_item)
+
+        cont_item.addEventListener('dragstart', dragStart)
+        cont_item.addEventListener('dragend', dragEnd)
+    }
 }
